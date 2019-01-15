@@ -7,8 +7,7 @@ export const NAVIGATION_GRANTED = 'navigation_granted'
 export function updateSearch (searchText) {
   return {
     type: UPDATE_SEARCH_RESULT,
-    searchText: searchText,
-    navigationRequested: false
+    searchText: searchText
   }
 }
 
@@ -28,14 +27,12 @@ export function startSearch () {
 
 export function navigationRequested () {
   return {
-    type: NAVIGATION_REQUESTED,
-    navigationRequested: true
+    type: NAVIGATION_REQUESTED
   }
 }
 
 export function navigationGranted () {
   return {
-    type: NAVIGATION_GRANTED,
-    navigationRequested: false
+    type: NAVIGATION_GRANTED
   }
 }

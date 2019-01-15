@@ -156,26 +156,23 @@ class CaseExplorer extends Component {
       this.primeCaseId = null
       if (!searchText) return cases
 
-      let caseResult, results, selectedCfg
-      let searchCfg = {
+      const searchCfg = {
         num: {
           flds: ['_id', 'title', 'selectedUnit'],
           redirectOnFieldMatch: '_id', // full match agains id will allow redirect to matched case uppon "Enter"
-          // regex: new RegExp(`(^|[^\\d])${searchText}`, 'i'),
-          regex: new RegExp(`${searchText}`, 'i')
+          regex: new RegExp(`(^|[^\\d])${searchText}`, 'i')
         },
         txt: {
           flds: ['title', 'selectedUnit'],
-          // regex: new RegExp(`(^|[^a-zA-Z])${searchText}`, 'i'),
-          regex: new RegExp(`${searchText}`, 'i')
+          regex: new RegExp(`(^|[^a-zA-Z])${searchText}`, 'i')
         }
       }
 
       // Checking the first character of the search term to determine if it's a numerical or alphabetical search
-      selectedCfg = searchCfg[ searchText.charAt(0).match(/\d/) ? 'num' : 'txt' ]
-      results = cases.filter(item => {
+      const selectedCfg = searchCfg[ searchText.charAt(0).match(/\d/) ? 'num' : 'txt' ]
+      const results = cases.filter(item => {
         return selectedCfg.flds.some(fld => {
-          caseResult = item[fld].match(selectedCfg.regex)
+          const caseResult = item[fld].match(selectedCfg.regex)
           if (caseResult) {
             if (!this.primeCaseId && fld === selectedCfg.redirectOnFieldMatch && caseResult.input === caseResult[0]) {
               this.primeCaseId = item.id
